@@ -1,6 +1,7 @@
 self.addEventListener('install', e => {
+  self.skipWaiting();
   e.waitUntil(
-    caches.open('avata-v10').then(cache => {
+    caches.open('avata-v12').then(cache => {
       return cache.addAll([
         './',
         './index.html',
@@ -13,10 +14,12 @@ self.addEventListener('install', e => {
 });
 
 self.addEventListener('activate', e => {
+  e.waitUntil(self.clients.claim());
+
   // Clean up old caches
   e.waitUntil(
     caches.keys().then(keys => Promise.all(
-      keys.filter(k => k.startsWith('avata-') && k !== 'avata-v10').map(k => caches.delete(k))
+      keys.filter(k => k.startsWith('avata-') && k !== 'avata-v12').map(k => caches.delete(k))
     ))
   );
 });
