@@ -578,6 +578,22 @@ if ('serviceWorker' in navigator) {
             <select id="speciesSelect">
               <option value="">Select species…</option>
               <option value="quercus_robur">Oak (Quercus robur)</option>
+              <option value="quercus_cerris">Turkey oak (Quercus cerris)</option>
+              <option value="quercus_rubra">Red oak (Quercus rubra)</option>
+              <option value="fraxinus_excelsior">Ash (Fraxinus excelsior)</option>
+              <option value="acer_pseudoplatanus">Sycamore (Acer pseudoplatanus)</option>
+              <option value="juglans_regia">Walnut (Juglans regia)</option>
+              <option value="morus_nigra">Black mulberry (Morus nigra)</option>
+              <option value="aesculus_hippocastanum">Horse chestnut (Aesculus hippocastanum)</option>
+              <option value="platanus_x_hispanica">Plane (Platanus × hispanica)</option>
+              <option value="robinia_pseudoacacia">Robinia (Robinia pseudoacacia)</option>
+              <option value="araucaria_araucana">Monkey puzzle (Araucaria araucana)</option>
+              <option value="pinus_nigra">Black pine (Pinus nigra)</option>
+              <option value="liriodendron_tulipifera">Tulip tree (Liriodendron tulipifera)</option>
+              <option value="cedrus_deodara">Deodar cedar (Cedrus deodara)</option>
+              <option value="cedrus_libani">Cedar of Lebanon (Cedrus libani)</option>
+              <option value="taxus_baccata">Yew (Taxus baccata)</option>
+              <option value="ilex_aquifolium">Holly (Ilex aquifolium)</option>
               <option value="castanea_sativa">Sweet chestnut (Castanea sativa)</option>
               <option value="fagus_sylvatica">Beech (Fagus sylvatica)</option>
               <option value="tilia_sp">Lime (Tilia sp.)</option>
@@ -653,117 +669,42 @@ if ('serviceWorker' in navigator) {
 
         <div class="row">
           <div>
-            <label for="growthCond">Growth conditions</label>
-            <select id="growthCond">
-              <option value="average">Average / typical</option>
-              <option value="good">Good / open-grown</option>
-              <option value="poor">Poor / exposed / suppressed</option>
+            <label for="fcinContext">FCIN12 growth context (White 1998)</label>
+            <select id="fcinContext">
+              <option value="">Select growth context…</option>
+              <option value="champion">Champion tree potential (ideal site conditions)</option>
+              <option value="good_open">Good site, open grown, sheltered</option>
+              <option value="average_park">Average site, garden, parkland</option>
+              <option value="churchyard">Churchyard</option>
+              <option value="poor_exposed">Poor ground and/or some exposure</option>
+              <option value="woodland_boundary">Woodland boundary pollard, or open woodland</option>
+              <option value="inside_woodland">Inside woodland</option>
             </select>
-            <div class="help">Used by the FCIN12-style age estimate.</div>
-          <div class="fcin-extra">
-            <h3 class="card-subtitle">FCIN12 age context (optional)</h3>
-            <p class="help">
-              Record additional FCIN12-style context for growth and history. These do not change the girth-based age directly,
-              but they widen or skew the indicative age range and are echoed in the reasoning.
-            </p>
-            <div class="features-grid">
-              <label class="feature-card">
-                <span class="feature-main">
-                  <input type="checkbox" class="fcin-flag" data-effect="open-grown" />
-                  <span class="feature-name">Open-grown / parkland</span>
-                </span>
-                <span class="feature-meta">Faster girth increment likely</span>
-              </label>
-              <label class="feature-card">
-                <span class="feature-main">
-                  <input type="checkbox" class="fcin-flag" data-effect="woodland" />
-                  <span class="feature-name">Woodland-grown / historic competition</span>
-                </span>
-                <span class="feature-meta">Slightly slower girth increment</span>
-              </label>
-              <label class="feature-card">
-                <span class="feature-main">
-                  <input type="checkbox" class="fcin-flag" data-effect="long-suppressed" />
-                  <span class="feature-name">Long-term suppressed</span>
-                </span>
-                <span class="feature-meta">Age may be higher than girth suggests</span>
-              </label>
-              <label class="feature-card">
-                <span class="feature-main">
-                  <input type="checkbox" class="fcin-flag" data-effect="suppressed-then-released" />
-                  <span class="feature-name">Suppressed then released</span>
-                </span>
-                <span class="feature-meta">Release growth phase may inflate girth for age</span>
-              </label>
-              <label class="feature-card">
-                <span class="feature-main">
-                  <input type="checkbox" class="fcin-flag" data-effect="pollard" />
-                  <span class="feature-name">Historic pollard / lapsed pollard</span>
-                </span>
-                <span class="feature-meta">Framework tree may pre-date current stem size</span>
-              </label>
-              <label class="feature-card">
-                <span class="feature-main">
-                  <input type="checkbox" class="fcin-flag" data-effect="poor-rooting" />
-                  <span class="feature-name">Poor rooting volume / restrictions</span>
-                </span>
-                <span class="feature-meta">Reduced girth increment expected</span>
-              </label>
-              <label class="feature-card">
-                <span class="feature-main">
-                  <input type="checkbox" class="fcin-flag" data-effect="exposed-coastal" />
-                  <span class="feature-name">Exposed / upland / coastal</span>
-                </span>
-                <span class="feature-meta">Growth likely slowed at times</span>
-              </label>
-              <label class="feature-card">
-                <span class="feature-main">
-                  <input type="checkbox" class="fcin-flag" data-effect="fertile-sheltered" />
-                  <span class="feature-name">Fertile / sheltered site</span>
-                </span>
-                <span class="feature-meta">Faster girth increment expected</span>
-              </label>
+            <div class="help">Select the core development category per White (FCIN12). This replaces the separate “growth conditions” modifier.</div>
+          </div>
+        </div>
+
+        <div class="row" id="fcinProxyRow" style="display:none;">
+          <div>
+            <div class="warning" id="fcinProxyWarning" style="margin-bottom:8px;">
+              This species is not included in the FCIN12 Table 1a dataset used by AVATA. Please select an FCIN12 proxy species with similar growth characteristics.
             </div>
-          </div>
+            <label for="fcinProxySpecies">FCIN12 proxy species (required)</label>
+            <select id="fcinProxySpecies">
+              <option value="">Select proxy species…</option>
+            </select>
 
-          </div>
-          <div>
-            <label for="siteContext">Site context <span style="font-weight:400;color:#9ca3af">(optional)</span></label>
-            <textarea id="siteContext" placeholder="e.g. hedgerow tree on farmland, adjacent to public footpath…"></textarea>
-          </div>
-        </div>
-
-        <div class="row">
-          <div>
-            <label for="logoInput">Logo (for app &amp; PDF)</label>
-            <input id="logoInput" type="file" accept="image/*" />
-            <div class="help">Add your practice logo. It shows in the header and in the generated PDF.</div>
+            <details class="dropdown-help" style="margin-top:8px;">
+              <summary>How proxy selection works (FCIN12)</summary>
+              <div class="help" style="margin-top:8px;">
+                FCIN12 (White, 1998) requires a proxy species to be used when the target species is not listed in Table 1a.
+                AVATA will then apply the selected proxy species’ Table 1a values together with the chosen growth context.
+              </div>
+            </details>
           </div>
         </div>
 
-        <div class="row">
-          <div>
-            <label for="surveyorName">Surveyor</label>
-            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;align-items:center;">
-              <select id="surveyorNameList" style="flex:0 0 180px;max-width:50%;">
-                <option value="">Select saved name…</option>
-              </select>
-              <input id="surveyorName" type="text" placeholder="Type surveyor name…" style="flex:1 1 140px;min-width:140px;" />
-              <button type="button" id="btnSaveSurveyor">Save name</button>
-            </div>
-            <div class="help">Choose a saved surveyor or type a new one. Saved names are stored in this browser only.</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Risk & photos -->
-      <section class="card">
-        <h2>
-          Risk &amp; photos
-          <span class="badge"><span class="dot"></span> Optional</span>
-        </h2>
-
-        <div class="row">
+<div class="row">
           <div>
             <label for="targetZone">Target use</label>
             <select id="targetZone">
@@ -1314,14 +1255,331 @@ if ('serviceWorker' in navigator) {
 <div id="pngSnapshot" style="position:absolute; left:-99999px; top:0;"></div>
 
 <script>
-  // FCIN12-style age configuration (edit to match your spreadsheet if needed)
-  const FCIN12_GROWTH_CM_PER_YEAR = {
-    quercus_robur: { good: 2.0, average: 1.6, poor: 1.3 },
-    fagus_sylvatica: { good: 2.2, average: 1.9, poor: 1.5 },
-    fraxinus_excelsior: { good: 2.4, average: 2.1, poor: 1.7 },
-    acer_pseudoplatanus: { good: 2.3, average: 2.0, poor: 1.6 },
-    default: { good: 2.0, average: 1.8, poor: 1.5 }
-  };
+  // FCIN12 (White, 1998) age estimation inputs
+// White (1998) FCIN12 Table 1a values: core development age (years) and mean ring width (mm)
+  const WHITE_FCIN12_TABLE1A = {
+  "champion": {
+    "quercus_robur": [
+      70,
+      5
+    ],
+    "quercus_cerris": [
+      30,
+      10
+    ],
+    "quercus_rubra": [
+      60,
+      6
+    ],
+    "fagus_sylvatica": [
+      80,
+      6
+    ],
+    "tilia_x_europaea": [
+      100,
+      5
+    ],
+    "platanus_x_hispanica": [
+      100,
+      6
+    ],
+    "araucaria_araucana": [
+      60,
+      5
+    ],
+    "pinus_nigra": [
+      60,
+      6
+    ],
+    "liriodendron_tulipifera": [
+      70,
+      7
+    ],
+    "cedrus_deodara": [
+      40,
+      8
+    ]
+  },
+  "good_open": {
+    "quercus_robur": [
+      80,
+      4
+    ],
+    "quercus_cerris": [
+      40,
+      6
+    ],
+    "quercus_rubra": [
+      70,
+      5
+    ],
+    "fagus_sylvatica": [
+      70,
+      5
+    ],
+    "castanea_sativa": [
+      70,
+      5
+    ],
+    "juglans_regia": [
+      55,
+      4
+    ],
+    "morus_nigra": [
+      40,
+      3
+    ],
+    "fraxinus_excelsior": [
+      50,
+      5
+    ],
+    "tilia_x_europaea": [
+      80,
+      5
+    ],
+    "aesculus_hippocastanum": [
+      50,
+      5
+    ],
+    "platanus_x_hispanica": [
+      60,
+      6
+    ],
+    "robinia_pseudoacacia": [
+      70,
+      5
+    ],
+    "araucaria_araucana": [
+      45,
+      5
+    ],
+    "pinus_nigra": [
+      70,
+      5
+    ],
+    "liriodendron_tulipifera": [
+      50,
+      6
+    ],
+    "cedrus_deodara": [
+      50,
+      7
+    ],
+    "cedrus_libani": [
+      60,
+      6
+    ],
+    "acer_pseudoplatanus": [
+      80,
+      6
+    ]
+  },
+  "average_park": {
+    "quercus_robur": [
+      100,
+      3.5
+    ],
+    "quercus_cerris": [
+      50,
+      5
+    ],
+    "quercus_rubra": [
+      80,
+      4
+    ],
+    "fagus_sylvatica": [
+      70,
+      4
+    ],
+    "castanea_sativa": [
+      60,
+      5
+    ],
+    "juglans_regia": [
+      50,
+      4
+    ],
+    "morus_nigra": [
+      30,
+      3
+    ],
+    "fraxinus_excelsior": [
+      70,
+      4
+    ],
+    "tilia_x_europaea": [
+      70,
+      5
+    ],
+    "aesculus_hippocastanum": [
+      40,
+      5
+    ],
+    "platanus_x_hispanica": [
+      70,
+      5
+    ],
+    "taxus_baccata": [
+      60,
+      4
+    ],
+    "robinia_pseudoacacia": [
+      80,
+      4
+    ],
+    "araucaria_araucana": [
+      60,
+      4
+    ],
+    "pinus_nigra": [
+      70,
+      5
+    ],
+    "cedrus_deodara": [
+      50,
+      6
+    ],
+    "acer_pseudoplatanus": [
+      60,
+      6
+    ]
+  },
+  "churchyard": {
+    "quercus_cerris": [
+      40,
+      6
+    ],
+    "fagus_sylvatica": [
+      60,
+      4
+    ],
+    "juglans_regia": [
+      50,
+      4
+    ],
+    "tilia_x_europaea": [
+      80,
+      5
+    ],
+    "aesculus_hippocastanum": [
+      50,
+      5
+    ],
+    "platanus_x_hispanica": [
+      70,
+      5
+    ],
+    "taxus_baccata": [
+      55,
+      3
+    ],
+    "robinia_pseudoacacia": [
+      80,
+      4
+    ],
+    "acer_pseudoplatanus": [
+      60,
+      6
+    ]
+  },
+  "poor_exposed": {
+    "quercus_robur": [
+      120,
+      3
+    ],
+    "fagus_sylvatica": [
+      60,
+      4
+    ],
+    "castanea_sativa": [
+      40,
+      5
+    ],
+    "juglans_regia": [
+      50,
+      3
+    ],
+    "taxus_baccata": [
+      40,
+      3
+    ],
+    "robinia_pseudoacacia": [
+      50,
+      3
+    ],
+    "araucaria_araucana": [
+      60,
+      3
+    ],
+    "pinus_nigra": [
+      60,
+      5
+    ],
+    "liriodendron_tulipifera": [
+      50,
+      4
+    ],
+    "cedrus_libani": [
+      80,
+      4
+    ],
+    "ilex_aquifolium": [
+      80,
+      3
+    ],
+    "acer_pseudoplatanus": [
+      60,
+      5
+    ]
+  },
+  "woodland_boundary": {
+    "quercus_robur": [
+      100,
+      3.5
+    ],
+    "fraxinus_excelsior": [
+      20,
+      5
+    ]
+  },
+  "inside_woodland": {
+    "quercus_robur": [
+      70,
+      2.5
+    ],
+    "fagus_sylvatica": [
+      120,
+      3
+    ],
+    "castanea_sativa": [
+      100,
+      3
+    ],
+    "fraxinus_excelsior": [
+      100,
+      3
+    ],
+    "taxus_baccata": [
+      30,
+      3
+    ],
+    "ilex_aquifolium": [
+      60,
+      4
+    ]
+  }
+};
+  const WHITE_FCIN12_SPECIES_KEYS = new Set(Object.values(WHITE_FCIN12_TABLE1A).flatMap(ctx => Object.keys(ctx)));
+  const FCIN12_CONTEXT_LABELS = {
+  "champion": "Champion tree potential (ideal site conditions)",
+  "good_open": "Good site, open grown, sheltered",
+  "average_park": "Average site, garden, parkland",
+  "churchyard": "Churchyard",
+  "poor_exposed": "Poor ground and/or some exposure",
+  "woodland_boundary": "Woodland boundary pollard, or open woodland",
+  "inside_woodland": "Inside woodland"
+};
+
 
   const SPECIES_CONFIG = {
     quercus_robur: { label: "Oak (Quercus robur)" },
@@ -1342,6 +1600,20 @@ if ('serviceWorker' in navigator) {
     crataegus_monogyna: { label: "Hawthorn (Crataegus monogyna)" },
     malus_domestica: { label: "Apple (Malus domestica)" },
     sambucus_nigra: { label: "Elder (Sambucus nigra)" },
+
+    quercus_cerris: { label: "Turkey oak (Quercus cerris)" },
+    quercus_rubra: { label: "Red oak (Quercus rubra)" },
+    juglans_regia: { label: "Walnut (Juglans regia)" },
+    morus_nigra: { label: "Black mulberry (Morus nigra)" },
+    tilia_x_europaea: { label: "Common lime (Tilia × europaea)" },
+    aesculus_hippocastanum: { label: "Horse chestnut (Aesculus hippocastanum)" },
+    platanus_x_hispanica: { label: "Plane (Platanus × hispanica)" },
+    robinia_pseudoacacia: { label: "Robinia (Robinia pseudoacacia)" },
+    araucaria_araucana: { label: "Monkey puzzle (Araucaria araucana)" },
+    pinus_nigra: { label: "Black pine (Pinus nigra)" },
+    liriodendron_tulipifera: { label: "Tulip tree (Liriodendron tulipifera)" },
+    cedrus_deodara: { label: "Deodar cedar (Cedrus deodara)" },
+    cedrus_libani: { label: "Cedar of Lebanon (Cedrus libani)" },
     default: { label: "Unspecified species" }
   };
 
@@ -1375,14 +1647,59 @@ if ('serviceWorker' in navigator) {
     minRareCountForVeteran: 1
   };
 
-  function estimateAgeFromFCIN12(girthMeters, speciesKey, cond) {
-    if (!girthMeters || girthMeters <= 0) return null;
-    const girthCm = girthMeters * 100;
-    const speciesRates = FCIN12_GROWTH_CM_PER_YEAR[speciesKey] || FCIN12_GROWTH_CM_PER_YEAR.default;
-    const rate = speciesRates[cond] || speciesRates.average;
-    const raw = girthCm / rate;
-    return Math.round(raw);
+  function estimateAgeFromFCIN12(dbhCm, speciesKey, contextKey, proxySpeciesKey) {
+    // Implements White (1998) FCIN12 sequence using Table 1a (core age / ring width) and derived mature-state CAI.
+    // Returns a structured result, or null if insufficient inputs.
+    if (!dbhCm || dbhCm <= 0) return null;
+    if (!contextKey) return null;
+
+    const chosenSpeciesKey = WHITE_FCIN12_SPECIES_KEYS.has(speciesKey) ? speciesKey : (proxySpeciesKey || null);
+    if (!chosenSpeciesKey) return null;
+
+    const entry = (WHITE_FCIN12_TABLE1A[contextKey] || {})[chosenSpeciesKey];
+    if (!entry) return null;
+
+    const coreAge = entry[0];          // years
+    const ringMm = entry[1];           // mm
+    const ringCm = ringMm / 10.0;
+
+    // Core radius at end of core-development phase:
+    const coreRadiusCm = coreAge * ringCm;
+
+    // Basal areas (cm^2)
+    const PI = Math.PI;
+    const coreBA = PI * coreRadiusCm * coreRadiusCm;
+
+    // Mature-state CAI of outer core ring (White 16.2d): subtract one ring width from core radius and difference BA.
+    const innerRadiusCm = Math.max(0, coreRadiusCm - ringCm);
+    const innerBA = PI * innerRadiusCm * innerRadiusCm;
+    const matureStateCAI = coreBA - innerBA; // cm^2 per year
+
+    // Whole stem basal area from measured DBH
+    const stemRadiusCm = dbhCm / 2.0;
+    const totalBA = PI * stemRadiusCm * stemRadiusCm;
+
+    const outerBA = Math.max(0, totalBA - coreBA);
+    const outerAge = matureStateCAI > 0 ? (outerBA / matureStateCAI) : 0;
+
+    const totalAge = coreAge + outerAge;
+
+    return {
+      totalAge: Math.round(totalAge),
+      totalAgeRaw: totalAge,
+      basisSpeciesKey: chosenSpeciesKey,
+      usedProxy: chosenSpeciesKey !== speciesKey,
+      coreAge,
+      ringMm,
+      coreRadiusCm,
+      coreBA,
+      matureStateCAI,
+      stemRadiusCm,
+      totalBA,
+      outerAge
+    };
   }
+
   function evaluateFCIN12(age, speciesKey, girthMeters, growthCond) {
     const reasons = [];
     if (!age || isNaN(age)) {
@@ -1691,11 +2008,37 @@ if ('serviceWorker' in navigator) {
 
   const speciesSelect = document.getElementById("speciesSelect");
   const speciesCustom = document.getElementById("speciesCustom");
+  const fcinContextSelect = document.getElementById("fcinContext");
+  const fcinProxyRow = document.getElementById("fcinProxyRow");
+  const fcinProxySelect = document.getElementById("fcinProxySpecies");
+
+  function populateFCIN12ProxyOptions() {
+    if (!fcinProxySelect) return;
+    const opts = Array.from(WHITE_FCIN12_SPECIES_KEYS).sort().map(k => {
+      const label = (SPECIES_CONFIG[k] && SPECIES_CONFIG[k].label) ? SPECIES_CONFIG[k].label : k.replace(/_/g, " ");
+      return { k, label };
+    }).sort((a,b)=>a.label.localeCompare(b.label));
+    fcinProxySelect.innerHTML = '<option value="">Select proxy species…</option>' + opts.map(o => `<option value="${o.k}">${o.label}</option>`).join("");
+  }
+
+  function updateFCIN12ProxyUI() {
+    const speciesKey = (speciesSelect && speciesSelect.value) ? speciesSelect.value : "";
+    const needsProxy = speciesKey && !WHITE_FCIN12_SPECIES_KEYS.has(speciesKey);
+    if (fcinProxyRow) fcinProxyRow.style.display = needsProxy ? "" : "none";
+    if (!needsProxy && fcinProxySelect) fcinProxySelect.value = "";
+  }
+
+  // Initialise FCIN12 proxy selector and UI
+  populateFCIN12ProxyOptions();
+  updateFCIN12ProxyUI();
+  if (speciesSelect) speciesSelect.addEventListener("change", updateFCIN12ProxyUI);
+  if (speciesCustom) speciesCustom.addEventListener("input", updateFCIN12ProxyUI);
+
   const dbhInput = document.getElementById("dbh");
   const dbhHeightInput = document.getElementById("dbhHeight");
   const girthInput = document.getElementById("girth");
   const heightInput = document.getElementById("height");
-  const growthCondSelect = document.getElementById("growthCond");
+  const growthCondSelect = null;
   const siteContext = document.getElementById("siteContext");
   const targetZone = document.getElementById("targetZone");
   const notes = document.getElementById("notes");
@@ -1941,7 +2284,7 @@ if ('serviceWorker' in navigator) {
     if (dbhMm) lines.push(`DBH: ${dbhMm.toFixed(0)} mm @ ${measHeight.toFixed(2)} m`);
     lines.push(`Girth: ${girthVal.toFixed(2)} m @ ${measHeight.toFixed(2)} m`);
     if (heightVal) lines.push(`Approx. height: ${heightVal.toFixed(1)} m`);
-    lines.push(`Growth conditions (FCIN12 input): ${growthCond}`);
+    lines.push(`FCIN12 growth context: ${growthCond}`);
     if (raven.fcin && raven.fcin.ageBand) {
       lines.push(`FCIN12-style agedness band: ${raven.fcin.ageBand}`);
     }
@@ -2022,7 +2365,7 @@ if ('serviceWorker' in navigator) {
     if (dbhMm) parts.push(`<p><strong>DBH:</strong> ${dbhMm.toFixed(0)} mm @ ${measHeight.toFixed(2)} m</p>`);
     parts.push(`<p><strong>Girth:</strong> ${girthVal.toFixed(2)} m @ ${measHeight.toFixed(2)} m</p>`);
     if (heightVal) parts.push(`<p><strong>Approx. height:</strong> ${heightVal.toFixed(1)} m</p>`);
-    parts.push(`<p><strong>Growth conditions (FCIN12):</strong> ${growthCond}</p>`);
+    parts.push(`<p><strong>FCIN12 context:</strong> ${growthCond}</p>`);
     parts.push(`<p><strong>ATF size band:</strong> ${raven.atfBand}</p>`);
     parts.push(`<p><strong>Overall category:</strong> ${raven.classification}</p>`);
     if (estAge) parts.push(`<p><strong>Approx. age (FCIN12-style):</strong> ~${estAge} years</p>`);
@@ -2144,9 +2487,22 @@ if ('serviceWorker' in navigator) {
   }
 
 btnAssess.addEventListener("click", () => {
-    const speciesKey = speciesSelect.value || "default";
+    const speciesKey = speciesSelect.value || "";
     const speciesCfg = SPECIES_CONFIG[speciesKey] || SPECIES_CONFIG.default;
     const speciesLabel = speciesCustom.value.trim() || speciesCfg.label;
+
+    const fcinContext = document.getElementById("fcinContext").value;
+    const fcinProxySpecies = document.getElementById("fcinProxySpecies").value;
+
+    if (!fcinContext) {
+      alert("Please select an FCIN12 growth context (White 1998).");
+      return;
+    }
+    const needsProxy = !speciesKey || !WHITE_FCIN12_SPECIES_KEYS.has(speciesKey);
+    if (needsProxy && !fcinProxySpecies) {
+      alert("This species is not included in the FCIN12 dataset used by AVATA. Please select an FCIN12 proxy species.");
+      return;
+    }
 
     const dbhMm = parseFloat(dbhInput.value);
     const measHeight = parseFloat(dbhHeightInput.value) || 1.3;
@@ -2160,7 +2516,7 @@ btnAssess.addEventListener("click", () => {
     }
 
     const heightVal = parseFloat(heightInput.value) || null;
-    const growthCond = growthCondSelect.value || "average";
+    const growthCond = (fcinContextSelect && fcinContextSelect.value) ? fcinContextSelect.value : "";
 
     if (!girthVal || girthVal <= 0) {
       alert("Please enter either a positive DBH (mm) or girth (m).");
@@ -2168,8 +2524,8 @@ btnAssess.addEventListener("click", () => {
     }
 
     const featureSummary = summariseFeatures();
-    const estAge = estimateAgeFromFCIN12(girthVal, speciesKey, growthCond);
-    const fcin = evaluateFCIN12(estAge, speciesKey, girthVal, growthCond);
+    const estAge = estimateAgeFromFCIN12(dbhCm, speciesKey, fcinContext, fcinProxySpecies);
+    const fcin = evaluateFCIN12(estAge && estAge.totalAge ? estAge.totalAge : null, speciesKey, girthVal, fcinContext);
     const ravenFeatures = summariseRavenFeatures();
     const raven2 = evaluateRaven2(estAge, ravenFeatures, fcin);
     const raven = classifyRAVEN(estAge, speciesKey, girthVal, featureSummary, measHeight);
@@ -2226,7 +2582,7 @@ btnAssess.addEventListener("click", () => {
     lines.push('<div><div class="result-label">Height</div>');
     lines.push(`<div>${heightVal ? heightVal.toFixed(1) + " m" : "—"}</div></div>`);
     lines.push('<div><div class="result-label">Growth</div>');
-    lines.push(`<div>${growthCond[0].toUpperCase() + growthCond.slice(1)} </div></div>`);
+    lines.push(`<div>${(FCIN12_CONTEXT_LABELS[growthCond] || growthCond || "Not selected")} </div></div>`);
     lines.push('<div><div class="result-label">Overall category (blended)</div>');
     lines.push(`<div><strong>${raven.classification}</strong></div></div>`);
     if (raven.raven2 && raven.raven2.classification) {
@@ -2328,7 +2684,6 @@ btnAssess.addEventListener("click", () => {
     dbhHeightInput.value = "1.3";
     girthInput.value = "";
     heightInput.value = "";
-    growthCondSelect.value = "average";
     siteContext.value = "";
     targetZone.value = "none";
     notes.value = "";
